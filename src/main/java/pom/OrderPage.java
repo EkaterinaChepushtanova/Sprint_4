@@ -44,8 +44,8 @@ public class OrderPage {
     //окно заказ оформлен
     private final By orderIsAccepted = By.xpath(".//div[contains(text(),'Заказ оформлен')]");
 
-
     private WebDriver driver;
+
     public OrderPage(WebDriver driver) {
         this.driver = driver;
     }
@@ -53,9 +53,11 @@ public class OrderPage {
     public void inputName(String text) {
         driver.findElement(nameField).sendKeys(text);
     }
+
     public void inputSurname(String text) {
         driver.findElement(surnameField).sendKeys(text);
     }
+
     public void inputAddress(String text) {
         driver.findElement(addressField).sendKeys(text);
     }
@@ -82,7 +84,7 @@ public class OrderPage {
 
     public void inputRentalPeriod(String days) {
         driver.findElement(rentalTimeField).click();
-        driver.findElement(By.xpath(".//div[@class='Dropdown-menu']/div[text()='" +days+"']")).click();
+        driver.findElement(By.xpath(".//div[@class='Dropdown-menu']/div[text()='" + days + "']")).click();
     }
 
     public void chooseColor(String text) {
@@ -101,9 +103,25 @@ public class OrderPage {
         driver.findElement(yesButton).click();
     }
 
-    public void checkOrderIsAccepted(){
+    public void checkOrderIsAccepted() {
         String orderAccepted = driver.findElement(orderIsAccepted).getText();
         Assert.assertThat("Ошибка. Заказ не оформлен.", orderAccepted, startsWith("Заказ оформлен"));
     }
 
+    public void inputDataToTheFirstPage(String name, String surname, String address, String subwayStation, String phoneNumber) {
+        inputName(name);
+        inputSurname(surname);
+        inputAddress(address);
+        inputSubwayStation(subwayStation);
+        inputPhoneNumber(phoneNumber);
+        clickToNextButton();
+    }
+
+    public void inputDataToTheSecondPage(String date, String rentalPeriod, String color, String comment) {
+        inputDate(date);
+        inputRentalPeriod(rentalPeriod);
+        chooseColor(color);
+        inputComment(comment);
+        clickToOrderButton();
+    }
 }

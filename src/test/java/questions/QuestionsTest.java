@@ -10,14 +10,13 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 //import org.openqa.selenium.firefox.FirefoxDriver;
 import pom.MainPage;
-
 import java.util.concurrent.TimeUnit;
 
 public class QuestionsTest {
     private WebDriver driver;
 
     @Before
-    public void setUp(){
+    public void setUp() {
         System.setProperty("webdriver.chrome.driver", "/Users/katerina/WebDriver/bin/chromedriver");
         //System.setProperty("webdriver.gecko.driver", "/Users/katerina/WebDriver/bin/geckodriver");
         driver = new ChromeDriver();
@@ -27,7 +26,7 @@ public class QuestionsTest {
 
         mainPage.open();
         WebElement element = driver.findElement(By.id("accordion__heading-7"));
-        ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView();",element);
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", element);
 
         //принять куки
         mainPage.clickCookieButton();
